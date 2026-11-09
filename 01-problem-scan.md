@@ -1,9 +1,5 @@
 # Bài cá nhân — Quét cơ hội và Quick Problem Cards
 
-Nhánh làm bài: `chuvv`. Phạm vi: AI Product Scoping theo bối cảnh giả lập của lab.
-
-**Tính trung thực dữ liệu:** Chưa có phỏng vấn, log vận hành hay số liệu nội bộ. Mọi thời gian, khối lượng và mục tiêu dưới đây là giả định thiết kế cần xác minh; không phải thống kê thực tế của các công ty. Không suy diễn thông tin doanh nghiệp trong worksheet thành thông tin đã kiểm chứng.
-
 ## Phase 1 — SCAN
 
 | # | Đơn vị trong bối cảnh lab | Lens | Bài toán cụ thể |
@@ -125,18 +121,4 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Dữ liệu cần:** hai bảng mẫu, quy tắc làm tròn/đơn vị tiền, ca trùng và thiếu mã.
 
-**Rủi ro/fallback:** thiếu mã hoặc khác tiền tệ → hàng ngoại lệ cho người duyệt; không dùng LLM làm phép tính. Chỉ cân nhắc OCR nếu có chứng cứ đầu vào ảnh là bottleneck.
-
-## Lựa chọn đề xuất cho nhóm
-
-Chọn Card 1 để deep-dive và lập trình vì có phạm vi sinh nháp rõ, dữ liệu tiếng Việt phù hợp LLM, và khớp các ranh giới trong starter code. Đây là đề xuất cá nhân, chưa phải quyết định họp nhóm.
-
-Card 2 cần thống nhất taxonomy và SOP khẩn cấp. Card 3 nên làm bằng rule trước; không đưa AI vào chỉ để có AI.
-
-## Phản biện và cách kiểm chứng
-
-1. **Baseline chưa có thật:** đo tối thiểu 30 lượt có timestamp từng bước trước khi tuyên bố tiết kiệm.
-2. **Có thể template đã đủ:** so sánh cùng bộ ca giữa template/rule và LLM; chỉ giữ LLM nếu cải thiện chất lượng hoặc thời gian duyệt.
-3. **Lợi ích chưa trừ chi phí review:** đo thời gian đến bản được duyệt, không chỉ thời gian model sinh; ghi token và chi phí từng request trước khi lập ngân sách.
