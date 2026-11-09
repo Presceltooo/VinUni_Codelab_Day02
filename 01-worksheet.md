@@ -63,11 +63,11 @@ Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận
 ### 📝 List bài toán của tôi:
 | # | Subsidiary (VinFast/Xanh SM...) | Lens | Mô tả ngắn bài toán |
 |---|----------------------------------|------|---------------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
+| 1 |Vinhomes                          |Tính lặp lại, Thời gian xử lý, Khó khăn của các bên liên quan |AI phân loại và điều phối yêu cầu bảo trì của cư dân: Tự động phân tích phản ánh về điện, nước, thang máy, vệ sinh; trích xuất vị trí, phân loại sự cố và đề xuất đội kỹ thuật phụ trách. |
+| 2 |Xanh SM                           |Tính lặp lại, Thời gian xử lý, Khó khăn của các bên liên quan  |AI phân loại khiếu nại sau chuyến đi: Phân tích phản ánh của khách hàng về tài xế, giá cước, hành trình và phương tiện; xác định mức độ ưu tiên và đề xuất bộ phận xử lý. |
+| 3 |Vinmec                            |Tính lặp lại, Thời gian xử lý, Tiềm năng ứng dụng AI |AI phân loại yêu cầu đặt lịch khám: Phân tích yêu cầu của bệnh nhân, xác định chuyên khoa, trích xuất thông tin cần thiết và phát hiện dữ liệu còn thiếu để hỗ trợ nhân viên tiếp nhận. |
+| 4 |VinFast                           |Tính lặp lại, Thời gian xử lý, Tiềm năng ứng dụng AI |AI hỗ trợ chẩn đoán lỗi xe điện: Phân tích DTC, ECU logs và mô tả triệu chứng, tổng hợp thông tin lỗi, đề xuất nguyên nhân nghi vấn và hướng kiểm tra cho kỹ thuật viên. |
+| 5 |VinFast                           |Tính lặp lại, Thời gian xử lý, Tiềm năng ứng dụng AI |AI phát hiện bất thường trong dữ liệu kiểm tra pin EV: Phân tích điện áp, nhiệt độ và nội trở cell pin để phát hiện các mẫu bất thường, cảnh báo và đề xuất kiểm tra bổ sung. |
 
 ---
 
@@ -76,28 +76,128 @@ Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận
 Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Problem Cards** dưới đây (10 phút/card).
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│ QUICK PROBLEM CARD #___                                     │
-│                                                             │
-│ Bài toán (1 câu): ________________________________________  │
-│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [ ] Vinhomes  │
-│                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
-│                                                             │
-│ Ai đang đau (Actor)? ______________________________________ │
-│                                                             │
-│ Workflow thủ công hiện tại (3-5 bước):                      │
-│   1. ___ ──> 2. ___ ──> 3. ___ ──> 4. ___                   │
-│                                                             │
-│ Bước nào tốn thời gian/lỗi nhất? ___ (⏱ ___ phút/lượt)      │
-│ AI có thể nhảy vào hỗ trợ ở bước nào? _____________________ │
-│                                                             │
-│ Đo thành công bằng gì (Metric có số)? ______________________ │
-│   VD: "Giảm thời gian soạn phản hồi từ 10 min ──> under 2 min"│
-│                                                             │
-│ Quick Architecture: [ ] No AI  [ ] Rule  [ ] LLM  [ ] Agent │
-└─────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #1                                                   │
+│                                                                         │
+│ Bài toán (1 câu): Xây dựng AI hỗ trợ phân loại yêu cầu bảo trì,          
+   trích xuất thông tin sự cố và đề xuất bộ phận xử lý.                   │
+│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [X] Vinhomes              
+                     [ ] Vinmec   [ ] Khác (Ghi rõ)________               │
+│                                                                         │
+│ Ai đang đau (Actor)? Nhân viên tiếp nhận và điều phối yêu cầu bảo trì   │
+│                                                                         │
+│ Workflow thủ công hiện tại (3-5 bước):                                  │
+│    1. Cư dân gửi yêu cầu qua ứng dụng, hotline hoặc lễ tân.             
+|    2. Nhân viên tiếp nhận và đọc nội dung phản ánh.                     
+|    3. Xác định loại sự cố, vị trí và mức độ ưu tiên.                    
+|    4. Tìm bộ phận/kỹ thuật viên phù hợp và chuyển yêu cầu.
+|    5. Theo dõi trạng thái xử lý.                                        │
+│                                                                         │
+│ Bước nào tốn thời gian/lỗi nhất? 
+|  - Bước 3–4: Phân loại sự cố và xác định bộ phận phụ trách.
+(⏱ 5 phút/lượt)                                                          │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? 
+  - Phân tích nội dung phản ánh bằng ngôn ngữ tự nhiên.
+  - Trích xuất vị trí, loại sự cố và mức độ khẩn cấp.
+  - Đề xuất bộ phận phụ trách để nhân viên xác nhận.                      │
+│                                                                         │
+│ Đo thành công bằng gì (Metric có số)? ______________________
+  - Giảm thời gian phân loại từ 5 phút xuống dưới 1 phút/yêu cầu.
+  - Độ chính xác phân loại sự cố ≥ 95%.
+  - Tỷ lệ đề xuất sai bộ phận phụ trách dưới 5%.
+  - Không bỏ sót sự cố nghiêm trọng trong tập kiểm thử. │
+│                                                                         │
+│ Quick Architecture: [ ] No AI  [X] Rule  [X] LLM  [ ] Agent
+  - Rule: Kiểm tra từ khóa và nhận diện tình huống khẩn cấp.
+  - LLM: Phân tích phản ánh, trích xuất thông tin và phân loại.
+  - Human-in-the-loop: Nhân viên xác nhận trước khi điều phối.            |
+└─────────────────────────────────────────────────────────────────────────┘
+```
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #2                                                   │
+│                                                                         │
+│ Bài toán (1 câu): Xây dựng AI hỗ trợ phân loại khiếu nại, 
+   trích xuất thông tin chuyến đi và đề xuất hướng xử lý.                 │
+│ Công ty thành viên: [ ] VinFast  [X] Xanh SM  [ ] Vinhomes              
+                     [ ] Vinmec   [ ] Khác (Ghi rõ)________               │
+│                                                                         │
+│ Ai đang đau (Actor)? Nhân viên chăm sóc khách hàng                      │
+│                                                                         │
+│ Workflow thủ công hiện tại (3-5 bước):                                  │
+    1. Khách hàng gửi khiếu nại qua ứng dụng hoặc kênh hỗ trợ.             
+    2. Nhân viên tiếp nhận và đọc nội dung khiếu nại.                     
+    3. Xác định nhóm vấn đề: tài xế, giá cước, phương tiện, 
+    thái độ phục vụ hoặc thất lạc đồ.                    
+    4. Kiểm tra thông tin chuyến đi và dữ liệu liên quan.
+    5. Đề xuất hướng xử lý và soạn phản hồi cho khách hàng.               │
+│                                                                         │
+│ Bước nào tốn thời gian/lỗi nhất? 
+|  - Bước 3–5: Phân loại, xác minh thông tin và chuẩn bị phản hồi.
+(⏱ 10 phút/lượt)                                                          │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? 
+  - Đọc và phân loại nội dung khiếu nại.
+  - Trích xuất mã chuyến đi, thời gian và loại vấn đề.
+  - Tóm tắt khiếu nại và đề xuất hướng xử lý.
+  - Soạn phản hồi ban đầu để nhân viên kiểm tra.                          │
+│                                                                         │
+│ Đo thành công bằng gì (Metric có số)? ______________________
+  Giảm thời gian xử lý ban đầu từ 10 phút xuống dưới 2 phút/khiếu nại.
+   Độ chính xác phân loại khiếu nại ≥ 95%.
+   Tỷ lệ phải chỉnh sửa đáng kể nội dung AI đề xuất dưới 10%.
+   100% phản hồi được nhân viên kiểm duyệt trước khi gửi trong giai đoạn 
+   thử nghiệm.                                                            │
+│                                                                         │
+│ Quick Architecture: [ ] No AI  [X] Rule  [X] LLM  [ ] Agent
+  - Rule: Kiểm tra mã chuyến đi, định dạng thông tin và điều kiện nghiệp vụ.
+  - LLM: Phân loại, tóm tắt khiếu nại và đề xuất phản hồi.
+  - Human-in-the-loop: Nhân viên quyết định hướng xử lý và phê duyệt phản 
+  hồi.                                                                    |
+└─────────────────────────────────────────────────────────────────────────┘
 ```
 
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #3                                                   │
+│                                                                         │
+│ Bài toán (1 câu): Xây dựng AI hỗ trợ phân loại nhu cầu khám, trích xuất 
+   thông tin bệnh nhân và đề xuất chuyên khoa phù hợp.                    │
+│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [ ] Vinhomes              
+                     [X] Vinmec   [ ] Khác (Ghi rõ)________               │
+│                                                                         │
+│ Ai đang đau (Actor)? Nhân viên tiếp nhận và đặt lịch khám.              │
+│                                                                         │
+│ Workflow thủ công hiện tại (3-5 bước):                                  │
+    1. Bệnh nhân liên hệ qua hotline, website hoặc ứng dụng để đặt lịch.
+    2. Nhân viên tiếp nhận thông tin và nhu cầu khám.
+    3. Xác định chuyên khoa phù hợp dựa trên nhu cầu được mô tả.
+    4. Kiểm tra lịch bác sĩ và khung giờ còn trống.
+    5. Xác nhận lịch khám với bệnh nhân.                                  │
+│                                                                         │
+│ Bước nào tốn thời gian/lỗi nhất? 
+|  - Bước 3–4: Xác định chuyên khoa và tìm kiếm lịch khám phù hợp.
+(⏱ 7 phút/lượt)                                                          │
+│ AI có thể nhảy vào hỗ trợ ở bước nào? 
+  - Phân tích nhu cầu khám bằng ngôn ngữ tự nhiên.
+  - Trích xuất thông tin về chuyên khoa, thời gian và cơ sở khám.
+  - Đề xuất chuyên khoa phù hợp để nhân viên xác nhận.
+  - Gợi ý khung giờ còn trống thông qua hệ thống lịch khám.               │
+│                                                                         │
+│ Đo thành công bằng gì (Metric có số)? ______________________
+  - Giảm thời gian tiếp nhận và đề xuất lịch từ 7 phút xuống dưới 
+      2 phút/yêu cầu.                                                     |
+  - Độ chính xác phân loại chuyên khoa ≥ 95%.
+  - Tỷ lệ thông tin đặt lịch thiếu hoặc sai dưới 5%.
+  - 100% trường hợp có dấu hiệu cấp cứu hoặc triệu chứng nguy hiểm được
+   chuyển cho nhân viên y tế đánh giá.                                    │
+│                                                                         │
+│ Quick Architecture: [ ] No AI  [X] Rule  [X] LLM  [ ] Agent
+  - Rule: Kiểm tra thông tin bắt buộc, lịch trống và điều kiện đặt lịch.
+  - LLM: Phân tích nhu cầu khám và đề xuất chuyên khoa.
+  - Human-in-the-loop: Nhân viên xác nhận chuyên khoa và lịch khám trước 
+  khi đặt chính thức.                                                     |
+└─────────────────────────────────────────────────────────────────────────┘
+```
 > [!TIP]
 > **🤖 AI Prompts — Stress-Test thẻ bài toán:**
 > Hãy dán nội dung thẻ bài toán của bạn vào LLM để nhận phản biện:
