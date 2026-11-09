@@ -13,7 +13,6 @@
 | 3 | **Vinhomes** | Lặp lại | Cư dân nộp hồ sơ đăng ký thi công nội thất. Ban quản lý đối chiếu tay từng giấy tờ, và hồ sơ thiếu phải gửi đi gửi lại nhiều lần. |
 | 4 | **Vinpearl** | Pain từ người khác | Phàn nàn nặng của khách nằm rải rác trên Booking.com, Agoda, Google Maps, nên quản lý khách sạn biết muộn. Khoảng 30 phút/ngày để đọc và lọc (giả định). |
 | 5 | **Vinmec** | Pain từ người khác | Khách không biết nên đặt lịch khám chuyên khoa nào, nên tổng đài phải hỏi lại và có lượt phải chuyển khoa khi đã đến viện. |
-| 6 | **VinWonders** | Lặp lại | Nhân viên trực chat trả lời lặp lại các câu hỏi về giá vé, giờ mở cửa và lịch trò chơi theo từng khu. |
 
 ---
 
