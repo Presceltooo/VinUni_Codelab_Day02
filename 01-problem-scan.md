@@ -8,16 +8,12 @@
 
 | # | Subsidiary | Lens | Mô tả ngắn bài toán |
 |---|------------|------|---------------------|
-| 1 | **VinFast** | AI có thể tốt hơn | Khách mô tả lỗi xe bằng tiếng Việt đời thường (ví dụ *"qua gờ giảm tốc kêu cụp cụp ở bánh trước"*). Tổng đài khó quy về đúng nhóm lỗi kỹ thuật ban đầu. |
-| 2 | **Vinpearl** | Tốn thời gian | Email đặt phòng theo đoàn từ công ty lữ hành có cấu trúc rất khác nhau. Nhân viên đọc tay rồi nhập lại để kiểm tra quỹ phòng. |
+| 1 | **VinFast** | AI có thể tốt hơn | Khi khách báo xe có vấn đề bằng lời tự nhiên (ví dụ *"qua gờ giảm tốc kêu cụp cụp ở bánh trước"*), tổng đài viên phải hỏi thêm rồi tự chọn nhóm lỗi trong danh sách, mất khoảng 6 phút/lượt (giả định). Kết quả phụ thuộc kinh nghiệm từng người. Chọn sai thì xưởng chuẩn bị sai và khách phải hẹn lại. |
+| 2 | **Vinpearl** | Tốn thời gian | Khi công ty du lịch gửi email đặt phòng cho đoàn, ngày ở, số phòng, loại phòng và yêu cầu riêng nằm lẫn trong thư hoặc file đính kèm. Nhân viên sales đọc rồi nhập tay vào hệ thống để kiểm tra phòng trống, mất khoảng 15 phút/email (giả định). Nhập sai có thể báo nhầm số phòng còn trống. |
 | 3 | **Vinhomes** | Lặp lại | Cư dân nộp hồ sơ đăng ký thi công nội thất. Ban quản lý đối chiếu tay từng giấy tờ, và hồ sơ thiếu phải gửi đi gửi lại nhiều lần. |
-| 4 | **Vinpearl** | Pain từ người khác | Phàn nàn khẩn cấp nằm rải rác trên Booking.com, Agoda, Google Maps nên quản lý biết muộn. |
+| 4 | **Vinpearl** | Pain từ người khác | Phàn nàn nặng của khách (ví dụ *"phòng bẩn"*, *"nhân viên thái độ tệ"*) nằm rải rác trên Booking.com, Agoda, Google Maps. Nhân viên phải mở từng trang để đọc và lọc, khoảng 30 phút/ngày (giả định), nên quản lý khách sạn có thể biết sau cả ngày, khi khách đã trả phòng. |
 | 5 | **Vinmec** | Pain từ người khác | Khách không biết nên đặt lịch khám chuyên khoa nào, nên tổng đài phải hỏi lại và có lượt phải chuyển khoa khi đã đến viện. |
 | 6 | **VinWonders** | Lặp lại | Nhân viên trực chat trả lời lặp lại các câu hỏi về giá vé, giờ mở cửa và lịch trò chơi theo từng khu. |
-
-Bài toán 5 thuộc lĩnh vực y tế, gợi ý sai có thể làm chậm việc khám của bệnh nhân. Bài toán này cần ranh giới rất chặt và có nhân viên y tế duyệt, nên không đưa vào top 3 ở vòng này.
-
-Bài toán 6 phần lớn là tra cứu thông tin cố định, nên **FAQ hoặc rule-based có thể đã đủ** mà không cần LLM.
 
 ---
 
@@ -73,28 +69,28 @@ Bài toán 6 phần lớn là tra cứu thông tin cố định, nên **FAQ ho�
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Card #3 — Vinhomes: Kiểm tra hồ sơ đăng ký thi công nội thất
+### Card #3 — Vinpearl: Phát hiện phàn nàn khẩn cấp từ review
 
 ```text
 ┌─────────────────────────────────────────────────────────────┐
 │ QUICK PROBLEM CARD #3                                       │
 │                                                             │
-│ Bài toán: Kiểm tra hồ sơ đăng ký thi công nội thất của cư   │
-│ dân xem đủ giấy tờ chưa, báo lại phần thiếu.                │
-│ Công ty thành viên: [x] Vinhomes                            │
+│ Bài toán: Phát hiện sớm phàn nàn khẩn cấp trong review trên │
+│ Booking, Agoda, Google Maps rồi báo đúng quản lý khách sạn. │
+│ Công ty thành viên: [x] Khác: Vinpearl                      │
 │                                                             │
-│ Ai đang đau? Cư dân, nhân viên ban quản lý tòa nhà          │
+│ Ai đang đau? Quản lý khách sạn, nhân viên CSKH, khách hàng  │
 │                                                             │
 │ Workflow thủ công hiện tại:                                 │
-│   1. Nhận hồ sơ ──> 2. Đối chiếu từng giấy tờ               │
-│   ──> 3. Báo phần thiếu ──> 4. Chuyển kỹ thuật duyệt        │
+│   1. Mở từng trang review ──> 2. Đọc, lọc phàn nàn nặng     │
+│   ──> 3. Tổng hợp gửi quản lý ──> 4. Soạn phản hồi          │
 │                                                             │
-│ Bước tốn nhất? Bước 2-3 (⏱ 20 phút/hồ sơ, giả định)         │
-│ AI hỗ trợ ở bước nào? Bước 2-3 (đọc giấy tờ, nháp phản hồi) │
+│ Bước tốn nhất? Bước 1-2 (⏱ 30 phút/ngày, giả định)          │
+│ AI hỗ trợ ở bước nào? Bước 2-3 (phân loại mức độ, tóm tắt)  │
 │                                                             │
-│ Metric: Giảm từ 20 phút/hồ sơ ──> dưới 5 phút;              │
-│ 95% hồ sơ thiếu giấy tờ được phát hiện đúng                 │
+│ Metric: Thời gian quản lý biết phàn nàn nặng từ 1 ngày      │
+│ ──> dưới 2 giờ; bắt được 90% phàn nàn nặng                  │
 │                                                             │
-│ Quick Architecture: [x] Rule + LLM Feature                  │
+│ Quick Architecture: [x] LLM Feature                         │
 └─────────────────────────────────────────────────────────────┘
 ```
