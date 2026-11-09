@@ -185,7 +185,7 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 │                                                                         │
 │ Đo thành công bằng gì (Metric có số)? ______________________
   - Giảm thời gian tiếp nhận và đề xuất lịch từ 7 phút xuống dưới 
-      2 phút/yêu cầu.                                                     |
+        2 phút/yêu cầu.                                                     |
   - Độ chính xác phân loại chuyên khoa ≥ 95%.
   - Tỷ lệ thông tin đặt lịch thiếu hoặc sai dưới 5%.
   - 100% trường hợp có dấu hiệu cấp cứu hoặc triệu chứng nguy hiểm được
