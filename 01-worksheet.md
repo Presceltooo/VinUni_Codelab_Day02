@@ -63,11 +63,11 @@ Hãy sử dụng **4 Lenses** dưới đây để quét qua hoạt động vận
 ### 📝 List bài toán của tôi:
 | # | Subsidiary (VinFast/Xanh SM...) | Lens | Mô tả ngắn bài toán |
 |---|----------------------------------|------|---------------------|
-| 1 | | | |
-| 2 | | | |
-| 3 | | | |
-| 4 | | | |
-| 5 | | | |
+| 1 | Vinhomes | Repetitive | Tự động phân loại khiếu nại cư dân như mất nước, hỏng đèn, thang máy và chuyển đến đúng bộ phận xử lý. |
+| 2 | Xanh SM | Time-consuming | Điều phối viên mất nhiều thời gian đọc tin nhắn/cuộc gọi tài xế về sự cố xe, sau đó tra cứu vị trí và hướng dẫn xử lý. |
+| 3 | VinFast | Repetitive | Đối chiếu dữ liệu sạc từ các trạm đối tác với hóa đơn thanh toán để phát hiện sai lệch. |
+| 4 | Vinpearl | AI-upgrade | Tổng hợp review khách sạn từ nhiều nền tảng, phát hiện các phàn nàn nghiêm trọng và gửi báo cáo cho quản lý. |
+| 5 | Vinmec | Stakeholder Pain | Bác sĩ mất nhiều thời gian soạn tóm tắt hồ sơ xuất viện từ bệnh án, xét nghiệm và ghi chú điều trị. |
 
 ---
 
@@ -77,24 +77,99 @@ Chọn **top 3 bài toán** từ danh sách trên và hoàn thiện **3 Quick Pr
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ QUICK PROBLEM CARD #___                                     │
+│ QUICK PROBLEM CARD #_1_                                     │
 │                                                             │
-│ Bài toán (1 câu): ________________________________________  │
-│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [ ] Vinhomes  │
+│ Bài toán (1 câu): Khiếu nại cư dân được gửi qua nhiều kênh  |
+|                   và phải phân loại, chuyển thủ công đến    |
+|                   đúng bộ phận.                             │
+│ Công ty thành viên: [ ] VinFast  [ ] Xanh SM  [✓] Vinhomes  │
 │                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
 │                                                             │
-│ Ai đang đau (Actor)? ______________________________________ │
+│ Ai đang đau (Actor)? Nhân viên chăm sóc cư dân, ban quản lý |
+|                      tòa nhà.                               │
 │                                                             │
 │ Workflow thủ công hiện tại (3-5 bước):                      │
-│   1. ___ ──> 2. ___ ──> 3. ___ ──> 4. ___                   │
+│   1. Cư dân gửi phản ánh qua ứng dụng, email hoặc hotline.  |
+|   2. Nhân viên đọc và tóm tắt nội dung.                     |
+|   3. Nhân viên xác định loại sự cố và tòa nhà liên quan.    |
+|   4. Nhân viên chuyển ticket đến bộ phận phụ trách.         |
+|   5. Bộ phận xử lý và phản hồi cư dân.                      │
 │                                                             │
-│ Bước nào tốn thời gian/lỗi nhất? ___ (⏱ ___ phút/lượt)      │
-│ AI có thể nhảy vào hỗ trợ ở bước nào? _____________________ │
+│ Bước nào tốn thời gian/lỗi nhất?                            |
+       Phân loại và chuyển ticket thủ công (⏱ 8-12 phút/ticket)|
+│ AI có thể nhảy vào hỗ trợ ở bước nào?                       |
+|      Đọc nội dung phản ánh, phân loại chủ đề, trích xuất    |
+|      tòa nhà/mức độ khẩn cấp và đề xuất bộ phận xử lý.      │
 │                                                             │
-│ Đo thành công bằng gì (Metric có số)? ______________________ │
-│   VD: "Giảm thời gian soạn phản hồi từ 10 min ──> under 2 min"│
+│ Đo thành công bằng gì (Metric có số)?                       │
+│   1. Giảm thời gian phân loại từ 10 min ──> under 2 min"    │
+│   2. Đạt tối thiểu 90% phân loại đúng.                      |
+|   3. 100% ticket mức độ khẩn cấp được chuyển cho nhân viên  |
+|         kiểm duyệt.                                         │
+│ Quick Architecture: [ ] No AI  [✓] Rule  [✓] LLM  [ ] Agent │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #_2_                                     │
 │                                                             │
-│ Quick Architecture: [ ] No AI  [ ] Rule  [ ] LLM  [ ] Agent │
+│ Bài toán (1 câu): Điều phối viên mất thời gian xử lý        |
+|                    báo cáo sự cố xe từ tài xế trong         |
+|                    lúc vận hành.                            |
+|                                                             │
+│ Công ty thành viên: [ ] VinFast  [✓] Xanh SM  [ ] Vinhomes  │
+│                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
+│                                                             │
+│ Ai đang đau (Actor)? Tài xế, điều phối viên trung tâm vận hành.│
+│                                                             │
+│ Workflow thủ công hiện tại (3-5 bước):                      │
+│   1.  xế gọi điện hoặc gửi tin nhắn báo sự cố.
+   2. Điều phối viên đọc nội dung và hỏi thêm thông tin.
+   3. Điều phối viên tra cứu vị trí xe và trạng thái chuyến.
+   4. Điều phối viên xác định hướng xử lý: tiếp tục di chuyển, đổi xe hoặc gọi cứu hộ.
+   5. Điều phối viên gửi hướng dẫn cho tài xế.                │
+│                                                             │
+│ Bước nào tốn thời gian/lỗi nhất?                            |
+       Đọc, tóm tắt và xác định mức độ nghiêm trọng của sự cố. (⏱ 12-15 phút/sự cố)|
+│ AI có thể nhảy vào hỗ trợ ở bước nào?                       |
+|      Tóm tắt nội dung, trích xuất biển số/vị trí/triệu chứng, 
+      phân loại mức độ và tạo bản nháp hướng dẫn.             │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                       │
+│   1. Giảm thời gian tiếp nhận và phân loại từ 15 phút xuống dưới 4 phút.
+   2. Trích xuất đúng thông tin chính trong ít nhất 90% báo cáo.
+   3. Không tự động đưa ra quyết định cứu hộ hoặc gửi hướng dẫn nếu chưa có người duyệt.                                                     │
+│ Quick Architecture: [ ] No AI  [ ] Rule  [✓] LLM  [ ] Agent │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #_1_                                     │
+│                                                             │
+│ Bài toán (1 câu): Nhân viên tài chính phải đối chiếu 
+                     thủ công dữ liệu sạc từ trạm đối tác 
+                     với hóa đơn thanh toán.                  │
+│ Công ty thành viên: [✓] VinFast  [ ] Xanh SM  [ ] Vinhomes  │
+│                     [ ] Vinmec   [ ] Khác (Ghi rõ)________  │
+│                                                             │
+│ Ai đang đau (Actor)? Nhân viên tài chính/vận hành trạm sạc. │
+│                                                             │
+│ Workflow thủ công hiện tại (3-5 bước):                      │
+│   1. Nhân viên nhận file dữ liệu phiên sạc từ đối tác.
+   2. Nhân viên nhận hóa đơn hoặc bảng kê thanh toán.
+   3. Nhân viên ghép mã phiên sạc, thời gian, trạm và số kWh.
+   4. Nhân viên tìm các bản ghi lệch hoặc thiếu.
+   5. Nhân viên liên hệ đối tác để xác minh.                  │
+│                                                             │
+│ Bước nào tốn thời gian/lỗi nhất?                            |
+       Ghép và phát hiện sai lệch giữa hai nguồn dữ liệu. (⏱ 2-3 giờ/kỳ đối chiếu)|
+│ AI có thể nhảy vào hỗ trợ ở bước nào?                       |
+|     Chuẩn hóa dữ liệu, ghép các bản ghi tương ứng, giải thích 
+      nguyên nhân sai lệch và tạo danh sách cần kiểm tra.                                                    │
+│                                                             │
+│ Đo thành công bằng gì (Metric có số)?                       │
+│   1. Giảm thời gian đối chiếu từ 3 giờ xuống dưới 30 phút/kỳ.
+   2. Phát hiện ít nhất 95% bản ghi sai lệch đã biết.
+   3. Không tự động duyệt thanh toán; mọi khoản lệch phải được nhân viên xác nhận.                                                       │
+│ Quick Architecture: [ ] No AI  [✓] Rule  [✓] LLM  [ ] Agent │
 └─────────────────────────────────────────────────────────────┘
 ```
 
