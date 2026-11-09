@@ -8,10 +8,10 @@
 
 | # | Subsidiary | Lens | Mô tả ngắn bài toán |
 |---|------------|------|---------------------|
-| 1 | **VinFast** | AI có thể tốt hơn | Khi khách báo xe có vấn đề bằng lời tự nhiên (ví dụ *"qua gờ giảm tốc kêu cụp cụp ở bánh trước"*), tổng đài viên phải hỏi thêm rồi tự chọn nhóm lỗi trong danh sách, mất khoảng 6 phút/lượt (giả định). Kết quả phụ thuộc kinh nghiệm từng người. Chọn sai thì xưởng chuẩn bị sai và khách phải hẹn lại. |
-| 2 | **Vinpearl** | Tốn thời gian | Khi công ty du lịch gửi email đặt phòng cho đoàn, ngày ở, số phòng, loại phòng và yêu cầu riêng nằm lẫn trong thư hoặc file đính kèm. Nhân viên sales đọc rồi nhập tay vào hệ thống để kiểm tra phòng trống, mất khoảng 15 phút/email (giả định). Nhập sai có thể báo nhầm số phòng còn trống. |
+| 1 | **VinFast** | AI có thể tốt hơn | Khách mô tả lỗi xe bằng lời tự nhiên, tổng đài viên phải tự chọn nhóm lỗi. Chọn sai thì xưởng chuẩn bị sai và khách phải hẹn lại. Khoảng 6 phút/lượt (giả định). |
+| 2 | **Vinpearl** | Tốn thời gian | Email đặt phòng theo đoàn của công ty du lịch không theo mẫu, nhân viên sales phải đọc rồi nhập tay vào hệ thống. Khoảng 15 phút/email (giả định). |
 | 3 | **Vinhomes** | Lặp lại | Cư dân nộp hồ sơ đăng ký thi công nội thất. Ban quản lý đối chiếu tay từng giấy tờ, và hồ sơ thiếu phải gửi đi gửi lại nhiều lần. |
-| 4 | **Vinpearl** | Pain từ người khác | Phàn nàn nặng của khách (ví dụ *"phòng bẩn"*, *"nhân viên thái độ tệ"*) nằm rải rác trên Booking.com, Agoda, Google Maps. Nhân viên phải mở từng trang để đọc và lọc, khoảng 30 phút/ngày (giả định), nên quản lý khách sạn có thể biết sau cả ngày, khi khách đã trả phòng. |
+| 4 | **Vinpearl** | Pain từ người khác | Phàn nàn nặng của khách nằm rải rác trên Booking.com, Agoda, Google Maps, nên quản lý khách sạn biết muộn. Khoảng 30 phút/ngày để đọc và lọc (giả định). |
 | 5 | **Vinmec** | Pain từ người khác | Khách không biết nên đặt lịch khám chuyên khoa nào, nên tổng đài phải hỏi lại và có lượt phải chuyển khoa khi đã đến viện. |
 | 6 | **VinWonders** | Lặp lại | Nhân viên trực chat trả lời lặp lại các câu hỏi về giá vé, giờ mở cửa và lịch trò chơi theo từng khu. |
 
